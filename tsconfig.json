@@ -1,0 +1,17 @@
+{
+    "include": [
+        "config/**/*",
+        "src/**/*",
+        "test/**/*",
+        "types/**/*",
+    ],
+    "exclude": [
+        "node_modules",
+    ],
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "strict": true,
+    },
+}
