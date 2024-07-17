@@ -1,0 +1,37 @@
+{
+  "name": "user-management-service",
+  "version": "1.0.0",
+  "description": "A Node.js service for managing user accounts, authentication, and profiles in a personalized online learning platform. Built with MongoDB for data storage and scalability.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeareyesjr/user-management-service.git"
+  },
+  "keywords": [
+    "Node.js",
+    "MongoDB",
+    "User",
+    "management",
+    "Authentication",
+    "Profiles",
+    "Online",
+    "Learning",
+    "Platform",
+    "Scalability"
+  ],
+  "author": "Jorge A. Reyes Jr.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgeareyesjr/user-management-service/issues"
+  },
+  "homepage": "https://github.com/jorgeareyesjr/user-management-service#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1"
+  }
+}
