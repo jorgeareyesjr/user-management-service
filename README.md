@@ -1,5 +1,4 @@
 # User Service for Personalized Online Learning Platform
-
 This Node.js service is designed to manage user accounts, authentication, and profiles for a personalized online learning platform. It is built with MongoDB for data storage and scalability.
 
 ## Features
@@ -19,13 +18,14 @@ This Node.js service is designed to manage user accounts, authentication, and pr
 ## Project Structure
 The project structure is organized as follows:
 - **src**: Contains source code files
-  - **controllers**: Logic for handling user operations
-  - **models**: MongoDB schema definitions
-  - **routes**: API routes for User Service
-  - **middlewares**: Middleware functions for authentication, error handling, etc.
-  - **services**: Additional business logic or service integrations
+    - **controllers**: Logic for handling user operations
+    - **models**: MongoDB schema definitions
+    - **routes**: API routes for User Service
+    - **middlewares**: Middleware functions for authentication, error handling, etc.
+    - **services**: Additional business logic or service integrations
 - **config**: Configuration files for the Node.js application
 - **test**: Unit tests for the User Service
+- **utils**: Utility functions
 
 ## Installation
 1. Clone the repository
@@ -33,6 +33,22 @@ The project structure is organized as follows:
 3. Set up a MongoDB database
 4. Configure environment variables in the `.env` file
 5. Run the server with `npm start`
+
+## Environment Configuration
+- Create a `.env` file in the root directory of the project.
+- Add the following environment variables to the `.env` file:
+    ```
+    MONGO_URI=ExampleValue:mongodb://username:password@host:port/database
+    MONGO_DB=ExampleValue:myMongoDBName
+    MONGO_USERS_COLLECTION=ExampleValue:users
+    MONGO_SESSIONS_COLLECTION=ExampleValue:sessions
+    JWT_SECRET=ExampleValue:jwt-secret-key
+    JWT_EXPIRATION=ExampleValue:7d
+    PORT=ExampleValue:3000
+    ```
+- Save the `.env` file with your desired configuration settings.
+
+Make sure to include the `.env` file in your `.gitignore` to prevent sensitive information from being exposed in your version control system. You can then load and use these environment variables in your Node.js application to manage configuration settings securely.
 
 ## Usage
 - Register a new user: `POST /api/users/register`
