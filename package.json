@@ -1,10 +1,10 @@
 {
   "name": "user-management-service",
   "version": "1.0.0",
-  "description": "A Node.js service for managing user accounts, authentication, and profiles in a personalized online learning platform. Built with MongoDB for data storage and scalability.",
-  "main": "index.js",
+  "description": "A Node.js service for managing user accounts, authentication, and profiles. Built with MongoDB for data storage and scalability.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "echo \"Initializing user-management-service...\" && nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,16 @@
   "homepage": "https://github.com/jorgeareyesjr/user-management-service#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.5.1"
+    "mongoose": "^8.5.1",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6"
   }
 }
