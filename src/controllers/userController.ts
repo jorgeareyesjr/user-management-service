@@ -6,6 +6,7 @@ import {
     generateJWT,
     hashPassword,
 } from '../../utils/cryptography';
+
 /**
  * Create a new user in the database.
  * @param {Request} req - The request object.
