@@ -44,7 +44,7 @@ const createUser = async (req: Request, res: Response) => {
         // Return a success message to the client.
         return Middlewares.handleSuccessfulUserRegistration(res);
     } catch (error) {
-         // Handle any server errors.
+        // Handle any server errors.
         return Middlewares.handleServerError(res, error as Error);
     };
 };
@@ -62,8 +62,8 @@ const deleteUser = async (req: Request, res: Response) => {
         // Mongoose's findOneAndDelete() returns the deleted document.
         const user = await User.findOneAndDelete({ username });
 
-         // Check if the user exists before deletion.
-         // Mongoose's findOneAndDelete() returns null if the user is not found.
+        // Check if the user exists before deletion.
+        // Mongoose's findOneAndDelete() returns null if the user is not found.
         if (!user) {
             return Middlewares.handleMissingUser(res);
         };
@@ -71,7 +71,7 @@ const deleteUser = async (req: Request, res: Response) => {
         // Return a success message for user deletion.
         return Middlewares.handleSuccessfulUserDeletion(res);
     } catch (error) {
-         // Handle any server errors.
+        // Handle any server errors.
         return Middlewares.handleServerError(res, error as Error);
     };
 };
