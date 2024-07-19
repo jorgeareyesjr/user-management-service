@@ -1,5 +1,5 @@
-# User Service for Personalized Online Learning Platform
-This Node.js service is designed to manage user accounts, authentication, and profiles for a personalized online learning platform. It is built with MongoDB for data storage and scalability.
+# User Service for Front-End Applications
+This Node.js service is designed to manage user accounts, authentication, and profiles for front-end applications. It is built with MongoDB for data storage and scalability.
 
 ## Features
 - User account creation
@@ -14,6 +14,8 @@ This Node.js service is designed to manage user accounts, authentication, and pr
 - MongoDB
 - Mongoose
 - JWT for authentication
+- bcrypt for password hashing
+- TypeScript for type-checking
 
 ## Project Structure
 The project structure is organized as follows:
