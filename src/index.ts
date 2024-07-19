@@ -24,7 +24,7 @@ async function startServer() {
         app.use(setCorsHeaders);
 
         // Define the user routes.
-        app.use( '/users', userRoutes);
+        app.use( '/api/users', userRoutes);
 
         // Start the server, listening on the specified port.
         server = app.listen(PORT, () => {
