@@ -1,25 +1,11 @@
 import { Request, Response } from 'express';
 import User from '../models/user';
-import {
-    handleDuplicateUserRegistration,
-    handleFoundUser,
-    handleInvalidLoginPassword,
-    handleInvalidLoginUsername,
-    handleMissingLoginFields,
-    handleMissingUser,
-    handleMissingUserRegistrationFields,
-    handleServerError,
-    handleSuccessfulUserDeletion,
-    handleSuccessfulUserLogin,
-    handleSuccessfulUserRegistration,
-    handleSuccessfulUserUpdate,
-} from '../services/userService';
+import * as Middlewares from '../middlewares/handleResponses';
 import {
     comparePasswords,
     generateJWT,
     hashPassword,
 } from '../../utils/cryptography';
-
 /**
  * Create a new user in the database.
  * @param {Request} req - The request object.
@@ -31,14 +17,15 @@ const createUser = async (req: Request, res: Response) => {
 
         // Check if all required fields are provided.
         if (!username || !email || !password) {
-            return handleMissingUserRegistrationFields(res);
+            return Middlewares.handleMissingUserRegistrationFields(res);
         };
 
         // Check if the user already exists in the database.
+        // Mongoose's findOne() returns the user if found, or null if not found.
         const existingUser = await User.findOne({ username });
 
         if (existingUser) {
-            return handleDuplicateUserRegistration(res);
+            return Middlewares.handleDuplicateUserRegistration(res);
         };
 
         // Hash the password before saving it to the database.
@@ -55,10 +42,10 @@ const createUser = async (req: Request, res: Response) => {
         await newUser.save();
 
         // Return a success message to the client.
-        return handleSuccessfulUserRegistration(res);
+        return Middlewares.handleSuccessfulUserRegistration(res);
     } catch (error) {
          // Handle any server errors.
-        return handleServerError(res, error as Error);
+        return Middlewares.handleServerError(res, error as Error);
     };
 };
 
@@ -78,14 +65,14 @@ const deleteUser = async (req: Request, res: Response) => {
          // Check if the user exists before deletion.
          // Mongoose's findOneAndDelete() returns null if the user is not found.
         if (!user) {
-            return handleMissingUser(res);
+            return Middlewares.handleMissingUser(res);
         };
 
         // Return a success message for user deletion.
-        return handleSuccessfulUserDeletion(res);
+        return Middlewares.handleSuccessfulUserDeletion(res);
     } catch (error) {
          // Handle any server errors.
-        return handleServerError(res, error as Error);
+        return Middlewares.handleServerError(res, error as Error);
     };
 };
 
@@ -103,14 +90,14 @@ const getUser = async (req: Request, res: Response) => {
 
         // Check if the user exists.
         if (!user) {
-            return handleMissingUser(res);
+            return Middlewares.handleMissingUser(res);
         };
 
         // Return the found user to the client.
-        return handleFoundUser(res, user);
+        return Middlewares.handleFoundUser(res, user);
     } catch (error) {
         // Handle any server errors.
-        return handleServerError(res, error as Error);
+        return Middlewares.handleServerError(res, error as Error);
     };
 };
 
@@ -125,7 +112,7 @@ const logInUser = async (req: Request, res: Response) => {
 
         // Check if both username and password are provided.
         if (!username || !password) {
-            return handleMissingLoginFields(res);
+            return Middlewares.handleMissingLoginFields(res);
         };
 
         // Find the user in the database by username.
@@ -133,7 +120,7 @@ const logInUser = async (req: Request, res: Response) => {
 
         // Check if the user exists.
         if (!existingUser) {
-            return handleInvalidLoginUsername(res);
+            return Middlewares.handleInvalidLoginUsername(res);
         };
 
         // Compare the provided password with the stored password.
@@ -141,7 +128,7 @@ const logInUser = async (req: Request, res: Response) => {
 
         // Check if the password is valid.
         if (!isPasswordValid) {
-            return handleInvalidLoginPassword(res);
+            return Middlewares.handleInvalidLoginPassword(res);
         };
 
         // Generate a JSON Web Token (JWT) for the user.
@@ -153,21 +140,21 @@ const logInUser = async (req: Request, res: Response) => {
         const userJWT = generateJWT(dataToEncode);
 
         // Return a success message with the JWT to the client.
-        return handleSuccessfulUserLogin(res, userJWT);
+        return Middlewares.handleSuccessfulUserLogin(res, userJWT);
     } catch (error) {
         // Handle any server errors.
-        return handleServerError(res, error as Error);
+        return Middlewares.handleServerError(res, error as Error);
     };
 };
 
 // @TODO: Implement logout functionality.
-const logOutUser = async (req: Request, res: Response) => {
-    try {
-        // @TODO: Implement logout logic here.
-    } catch (error) {
-        return handleServerError(res, error as Error);
-    };
-};
+// const logOutUser = async (req: Request, res: Response) => {
+//     try {
+//         // @TODO: Implement logout logic here.
+//     } catch (error) {
+//         return handleServerError(res, error as Error);
+//     };
+// };
 
 /**
  * Update a user's information in the database.
@@ -190,14 +177,14 @@ const updateUser = async (req: Request, res: Response) => {
         // Check if the user exists before updating.
         // Mongoose's findOneAndUpdate() returns null if the user is not found.
         if (!user) {
-            return handleMissingUser(res);
+            return Middlewares.handleMissingUser(res);
         };
 
         // Return a success message with the updated user.
-        return handleSuccessfulUserUpdate(res, user);
+        return Middlewares.handleSuccessfulUserUpdate(res, user);
     } catch (error) {
         // Handle any server errors.
-        return handleServerError(res, error as Error);
+        return Middlewares.handleServerError(res, error as Error);
     };
 };
 
