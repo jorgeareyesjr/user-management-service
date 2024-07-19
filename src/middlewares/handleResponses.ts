@@ -10,11 +10,11 @@ const handleDuplicateUserRegistration = (res: Response) => {
 
 const handleFoundUser = (res: Response, user: any) => {
     return res
-    .status(200)
-    .json({
-        user,
-        message: 'User found',
-    });
+        .status(200)
+        .json({
+            user,
+            message: 'User found',
+        });
 };
 
 const handleInvalidLoginPassword = (res: Response) => {
@@ -43,18 +43,18 @@ const handleMissingLoginFields = (res: Response) => {
 
 const handleMissingUser = (res: Response) => {
     return res
-    .status(404)
-    .json({
-        message: 'User not found',
-    });
+        .status(404)
+        .json({
+            message: 'User not found',
+        });
 };
 
 const handleMissingUserRegistrationFields = (res: Response) => {
     return res
-    .status(400)
-    .json({
-        message: 'Please provide all required fields',
-    });
+        .status(400)
+        .json({
+            message: 'Please provide all required fields',
+        });
 };
 
 const handleServerError = (res: Response, error: Error) => {
